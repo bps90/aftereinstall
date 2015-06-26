@@ -1,0 +1,247 @@
+" 
+" MY PERSONAL VIM DEFINITIONS
+" 
+" Author: Gustavo Pantuza
+" Since: 14.08.2012
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" FILE HANDLING
+"
+
+" Auto reload files on change
+autocmd! bufwritepost .vimrc source %
+set autoread
+
+" Do not create/write backup files *.swp, *~, etc
+set nobackup
+set nowritebackup
+set noswapfile
+
+" filetypes
+filetype plugin on
+filetype indent on
+
+" VIM7 fix for identify latex files
+let g:tex_flavor='latex'
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" EDITOR PREFERENCES
+"
+
+" Enable mouse
+set mouse=a
+
+" Enables line numbers
+set number
+set numberwidth=1
+
+" Enables cursor line and defines its colors
+set cursorline
+
+" Mark the column 80 with blue color
+set colorcolumn=80
+
+" Set history and undo size
+set history=500
+set undolevels=500
+
+" show cursor all the time
+set ruler
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" HIGHLIGHTS
+"
+
+" Sets line number colors
+highlight LineNr ctermfg=Brown ctermbg=DarkGrey
+
+" Highlights the cursor line
+highlight CursorLine cterm=None term=None ctermbg=DarkGrey
+
+" Highlights the 80th column
+highlight ColorColumn ctermbg=blue
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" CODING PREFERENCES
+"
+
+" Enables syntax highlight
+syntax on
+
+" Correct backspace behavior
+set bs=2
+
+" Tabs and spaces configuration
+set tabstop=4
+set expandtab
+set shiftwidth=4
+retab
+
+" Set the text width to 79
+set textwidth=79
+
+" Encoding
+set encoding=utf8
+
+" Sets auto indentation (disable when copying from clipboard)
+set autoindent
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" COPY AND PASTE
+"
+
+" Toggle paste on and off
+set pastetoggle=<F2>
+" Show when paste is on or off
+set showmode
+" Ever copy and paste from clipboard register
+set clipboard=unnamedplus
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" SEARCH
+"
+
+" Makes vim search case insensitive
+set ignorecase
+set smartcase
+" Turns vim search incremental
+set incsearch
+" Highlight and show search matches
+set hlsearch
+set showmatch
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands alias
+"
+cab W  w
+cab Wq wq
+cab wQ wq
+cab WQ wq
+cab Q  q
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGINS DEFINITIONS
+"
+
+" Maps the nerdtree plugin toggle
+map <F4> :NERDTreeToggle<cr>
+
+" make NERDTree synced in all tabs
+autocmd VimEnter * NERDTree
+autocmd BufEnter * NERDTreeMirror
+autocmd VimEnter * wincmd w
+
+" Auto open taglist plugin when opening vim
+" "let Tlist_Auto_Open=1
+" Maps the taglist plugin toggle
+map <F5> :TlistToggle<CR>
+" Open tag list plugin window on right side
+let Tlist_Use_Right_Window = 1
+" Adjust tag list window width
+let Tlist_WinWidth = 50
+
+" - clang_complete plugin
+" automatic select entries in the popup menu
+let g:clang_auto_select = 2
+" open quickfix window on error
+let g:clang_complete_copen = 1
+" periodically update the quickfix window
+let g:clang_periodic_quickfix = 1
+" after completion, close the popup window
+let g:clang_close_preview = 1
+" Instead of use the clang tool, uses clang library (faster)
+let g:clang_use_library = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" KEY MAPPING
+"
+
+" Tabs navigation
+:map <F8> :tabprevious<CR>
+:map <F9> :tabnext<CR>
+:imap <F8> <Esc>:tabprevious<CR>i
+:imap <F9> <Esc>:tabnext<CR>i
+
+" Enter search mode
+map <C-f> <CR>/
+imap <C-f> <Esc><CR>/
+
+" Select all the content file
+map <C-a> ggVG
+
+" Maps undo operation to ctrl+z 
+imap <C-z> <Esc><CR>ui
+
+" Maps save operation to ctrl+s (do not work on gonome-terminal)
+"map <C-s> <Esc><CR>:w
+"imap <C-s> <C-o><C-s>
+
+" Map horizontal identation to tab keys and shift_tab
+" On visual mode
+map <Tab> >gv
+map <S-Tab> <gv
+" On normal mode
+nmap <Tab> >>
+nmap <S-Tab> <<
+" On insert mode
+imap <S-Tab> <Esc><<i
+
+" auto complete markers on insert mode
+imap { {}<left>
+imap ( ()<left>
+imap [ []<left>
+imap " <C-V>"<C-V>"<left>
+imap ' <C-V>'<C-V>'<left>
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" MACROS 
+"
+
+" run pep8 tool for the current python file
+autocmd filetype python map <C-F8> <ESC>:w\|!clear; pep8 %<CR>
+
+" run the current python file
+autocmd filetype python map <C-F5> <ESC>:w\|!clear; python %<CR>
+
+" Code snippet to insert python debugger on code
+autocmd filetype python imap <C-d> import ipdb<C-M>ipdb.set_trace(
+
+" run make for c files
+autocmd filetype c map <C-F5> <ESC>:w\|!clear; make<CR>
+"
+" run make for c++ files
+autocmd filetype cpp map <C-F5> <ESC>:w\|!clear; make<CR>
+
+" run make for Makefiles files
+autocmd filetype make map <C-F5> <ESC>:w\|!clear; make<CR>
+
+" run make latex for tex files
+autocmd filetype tex map <C-F5> <ESC>:w\|!clear; make latex<CR>
+" Run spell check on current tex file
+autocmd filetype tex map <C-F8> <ESC>:w\|!aspell --lang=en --mode=tex check %<CR>
