@@ -18,6 +18,7 @@ GIT_DIR := git
 VIM_DIR := vim
 THIRD_DIR := third-party
 PYTHON_DIR := python
+SUBLIME_DIR := sublime
 
 
 # Colors to messages during execution
@@ -34,7 +35,7 @@ export USER_NAME USER_HOME BROWN BLUE END_COLOR
 ############# ### ## #
 # TARGETS
 
-install: greetings shell versioning python-req third bye
+install: greetings shell versioning python-req third sublime bye
 
 
 greetings: clear
@@ -61,6 +62,8 @@ third: ${THIRD_DIR}/Makefile
 python-req: ${PYTHON_DIR}
 	${PYTHON_DIR/profile.sh}
 
+sublime: ${SUBLIME_DIR}
+	${SUBLIME_DIR/sublime2t.sh}
 
 bye:
 	@echo -e "\n$(BROWN)open your mind, happy coding :D$(END_COLOR)\n"
