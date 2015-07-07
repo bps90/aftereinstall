@@ -38,3 +38,7 @@ PS1="\[$BROWN\]\u@\h :\[$BLUE\]\w\[$GRAY\]\$(parse_git)\[$BROWN\]▶\[$END_COLOR
 
 # Welcome message
 echo -e "${GRAY}\n\nWelcome to ${HOSTNAME} $(id -un) o/\n--\n${END_COLOR}"
+
+# Remap the 305M logitech mouse
+logitech_mouse_id=$(xinput | grep "Lhgitech USB Receiver" | awk {'print substr($6,4,5)'} | sed -n 1p)
+xinput set-button-map $logitech_mouse_id 1 2 3 4 5 8 9 6 7
