@@ -4,3 +4,11 @@ vlc
 smplayer
 smplayer-skins
 smplayer-themes
+libxine2-codecs
+k3b-codecs
+lame
+gstreamer-plugins-bad
+gstreamer-plugins-ugly
+gstreamer-plugins-ugly-orig-addon
+gstreamer-plugins-libav
+libdvdcss2
