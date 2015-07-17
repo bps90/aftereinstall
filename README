@@ -18,10 +18,10 @@ Moreover additional Configuration are also installed such as audio, video, cloud
     - third-part
     - vim
 
-# AUTHOR
+# AUTHORS
     
-    Written by Bruno Pereira Gustavo Pantuza
+    Written by Gustavo Pantuza and Bruno Peereira
 
 # REPORTING BUGS
 
-    Report Panfiles bugs to bruno.ps@dcc.ufmg.br or gustavopantuza@gmail.com
+    Report Panfiles bugs to gustavopantuza@gmail.com or bruno.ps@dcc.ufmg.br
